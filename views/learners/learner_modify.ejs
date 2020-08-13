@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <% include ../partials/learners/header.ejs %>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <% include ../partials/learners/sidebar.ejs %>
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <% include ../partials/nav.ejs %>
+        <div class="container-fluid">
+          <br>
+          <h2>Teacher Profile</h2>
+          <form action="/learners/modify" method="post" enctype="multipart/form-data">
+            <table>
+              <tr>
+                <td><label for="name">Name</label></td>
+                <td><p>-</p></td>
+                <!-- <td><h6><%= user.name %></h6></td> -->
+                <td><input type="text" name="name" value="<%=user.name%>"></td>
+              </tr>
+              <tr>
+                <td><label for="name">Username</label></td>
+                <td><p>-</p></td>
+                <td><input type="text" name="username" value="<%=user.username%>"></td>
+              </tr>
+              <tr>
+                <td><label for="name">Email</label></td>
+                <td><p>-</p></td>
+                <td><input type="text" name="email" value="<%=user.email%>"></td>
+                <input type="hidden" name="password" value="<%=user.password%>">
+              </tr>
+              <tr>
+                <td><label for ="photo">Photo</label></td>
+                <td><p>-</p></td>
+                <td>
+                  <% if (user.photo) { %>
+                    <img src="<%= user.photo %>" style="width:280px; height:280px; border-style:none;" alt="Learner Photo">
+                  <% } else { %>
+                    <img src="/images/noimage.svg" alt="No image">
+                  <% } %>
+                </td>
+                <td><input type="file" name="photo" id="photo" accept="image/*"></td>
+              </tr>
+            </table>
+            <div class="file-field input-field">
+              <input class="btn btn-primary" type="submit" value="Update">
+            </div>
+          </form>
+
+          <!-- <%= typeof msg != 'undefined' ? msg : '' %>
+          <form class="" action="/profiles/upload" method="post" enctype="multipart/form-data">
+            <div class="file-field input-field">
+              <input type="file" name="myImage">
+              <input class="btn btn-primary" type="submit" value="Add Photo">
+            </div>
+          </form> -->
+
+        </div>
+      </div>
+    </div>
+    <% include ../partials/learners/footer.ejs %>
+  </body>
+  <% include ../partials/learners/scripts.ejs %>
+</html>

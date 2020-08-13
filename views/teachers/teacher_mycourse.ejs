@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <% include ../partials/header.ejs %>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <% include ../partials/sidebar.ejs %>
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <% include ../partials/nav.ejs %>
+        <div class="container-fluid">
+          <br>
+            <h2><%= title %></h2>
+            <ul>
+              <% if (articles && articles.length > 0) { %>
+                <% articles.forEach(function(article) { %>
+                    <li class="list-group-item">
+                      <a href="/articles/<%=article._id%>"> <%= article.title %></a>
+                    </li>
+                <% }); %>
+              <% } else { %>
+                <h1 style="text-align:center;"> Sorry ! No Articles !</h1>
+              <% } %>
+            </ul>
+
+        </div>
+      </div>
+    </div>
+    <% include ../partials/footer.ejs %>
+  </body>
+  <% include ../partials/scripts.ejs %>
+</html>

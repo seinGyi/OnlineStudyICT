@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <% include ../partials/learners/header.ejs %>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <% if(user){ %>
+        <% include ../partials/learners/sidebar.ejs %>
+      <% } %>
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <% include ../partials/nav.ejs %>
+        <div class="container-fluid">
+          <br>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Categories</h3>
+                    </div>
+                    <div class="card-body all-icons">
+                        <div class="row">
+                          <% if (categories && categories.length > 0) { %>
+                            <% categories.forEach(function(category) { %>
+                              <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                                  <a href="courses/categories/<%= category._id %>" style="text-decoration: none"><p><%= category.cname %></p></a>
+                              </div>
+                            <% }); %>
+                          <% } else { %>
+                            <h1 style="text-align:center;"> Sorry ! No Category !</h1>
+                          <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+
+            <div class="col-md-12">
+              <div class="card col-12">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-3">
+                      <span class="float-left">
+                        <h3>Courses</h3>
+                      </span>
+                    </div>
+                    <div class="col-9">
+                      <span class="float-right">
+                        <% if(user){ %>
+                          <% if(user.type == 'teacher'){ %>
+                            <a href="/courses/add" class="btn btn-outline-primary btn-sm" style="align: right;">Add Courses</a>
+                          <% } %>
+                        <% } %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <!-- <div class="col-12">
+                      <p class="mb-5">These are favorite courses.</p>
+                    </div> -->
+                    <% if (courses && courses.length > 0) { %>
+                      <% courses.forEach(function(course) { %>
+                        <div class="col-lg-6 col-xl-4">
+                          <div class="card text-white bg-secondary mb-3 courses">
+                            <div class="card-header bg-secondary stars-outer">
+                              <a class="nostylelink" href="/courses/<%= course._id %>"><h5 class="card-title" style="color:white;"><%= course.title %></h5></a>
+                              <div class="stars-inner">
+
+                              </div>
+                              <span class="number-rating"></span>
+                            </div>
+                            <div class="card-body">
+                              <h6 style="color:white;"><%= course.authname %></h6>
+                              <p class="card-text" style="color:white;"><%= course.description %></p>
+                            </div>
+                          </div>
+                        </div>
+                      <% }); %>
+                    <% } else { %>
+                      <h1 style="text-align:center;"> Sorry ! No Courses !</h1>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            </div><br>
+
+        </div>
+      </div>
+    </div>
+    <% include ../partials/learners/footer.ejs %>
+  </body>
+  <% include ../partials/learners/scripts.ejs %>
+</html>

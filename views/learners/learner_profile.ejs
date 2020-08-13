@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <% include ../partials/learners/header.ejs %>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <% if (user) { %>
+        <% include ../partials/learners/sidebar.ejs %>
+      <% } %>
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <% include ../partials/learners/nav.ejs %>
+        <div class="container-fluid">
+          <br>
+          <h2>Teacher Profile</h2>
+          <table>
+            <tr>
+              <td><label for="name">Name</label></td>
+              <td><p>-</p></td>
+              <td><h6><%= user.name %></h6></td>
+            </tr>
+            <tr>
+              <td><label for="name">Username</label></td>
+              <td><p>-</p></td>
+              <td><h6><%= user.username %></h6></td>
+            </tr>
+            <tr>
+              <td><label for="name">Email</label></td>
+              <td><p>-</p></td>
+              <td><h6><%= user.email %></h6></td>
+            </tr>
+            <tr>
+              <td><label for ="photo">Photo</label></td>
+              <td><p>-</p></td>
+              <td><div class="teacher-profile">
+                <% if (user.photo) { %>
+                  <img src="<%= user.photo %>" style="width:280px; height:280px; border-radius: 50%;" alt="Learner Photo">
+                <% } else { %>
+                  <img src="../images/noimage.svg" class="img-responsive" alt="no image">
+                <% } %>
+              </div></td>
+            </tr>
+          </table>
+
+          <%= typeof msg != 'undefined' ? msg : '' %>
+          <!-- <form class="" action="/teachers/upload" method="post" enctype="multipart/form-data">
+            <div class="file-field input-field">
+              <input type="file" name="myImage">
+              <input class="btn btn-primary" type="submit" value="Add Photo">
+            </div>
+          </form> -->
+          <br>
+          <a class="btn btn-primary" href="/learners/modify">Modify</a>
+
+        </div>
+      </div>
+    </div>
+    <% include ../partials/learners/footer.ejs %>
+  </body>
+  <% include ../partials/learners/scripts.ejs %>
+</html>

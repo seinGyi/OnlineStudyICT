@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <% include partials/header.ejs %>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <% if(user){ %>
+        <% include partials/sidebar.ejs %>
+      <% } %>
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <% include partials/nav.ejs %>
+        <div class="container-fluid">
+          <br>
+
+
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title"><%= category.cname %> Courses</h3>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <% if (courses && courses.length > 0) { %>
+                      <% courses.forEach(function(course) { %>
+                        <div class="col-lg-6 col-xl-4">
+                          <div class="card text-white bg-secondary mb-3">
+                            <div class="card-header bg-secondary"><%= course.authname %></div>
+                            <div class="card-body">
+                              <a class="nostylelink" href="../../courses/<%= course._id %>"><h5 class="card-title" style="color:white;"><%= course.title %></h5></a>
+                              <p class="card-text" style="color:white;"><%= course.description %></p>
+                            </div>
+                          </div>
+                        </div>
+                      <% }); %>
+                    <% } else { %>
+                      <h1 style="text-align:center;"> Sorry ! No <%= category.cname %> Course !</h1>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            </div><br>
+
+        </div>
+      </div>
+    </div>
+    <% include partials/footer.ejs %>
+  </body>
+  <% include partials/scripts.ejs %>
+</html>

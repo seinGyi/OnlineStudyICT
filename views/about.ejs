@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <% include partials/header.ejs %>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <% if(user){ %>
+        <% include partials/sidebar.ejs %>
+      <% } %>
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <% include partials/nav.ejs %>
+        <div class="container-fluid">
+          <br>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">About Us</h3>
+                    </div>
+                    <div class="card-body">
+                      <div class="card-body responsive">
+                        <p>  ကျွန်တော်တို့ Online ICT Study website ဟာ သင်ကြားရေး website တစ်ခုဖြစ်ပါတယ်။ </p>
+                        <p>  မြန်မာနိုင်ငံမှာ </p>
+                        <p>   -   မြန်မာလူငယ်များ </p>
+                        <p>   -   အဝေးရောက်ပြီး ကိုယ်တက်ချင်တဲ့ သင်တန်းများကို မတက်ရောက်နိုင်သေးသောသူများ </p>
+                        <p>   -   သင်တန်းကြေးမြင့်မားလွန်းသောကြောင့် အခက်အခဲ ဖြစ်နေသော သူများကို </p>
+                        <p>  ဒီ website မှာ အလွယ်တကူ သင်တန်းကြေး အခမဲ့ ဖြင့် ကိုယ်သင်ချင်သော သင်ခန်းစာများအားလုံးကို မြန်မာလို သင်ကြားနိုင်အောင် ဖန်တီးပေးထားပါတယ်။ </p>
+                        <p>  ဒီ website ကိုလာရောက်ကြည့်ရှုသူအားလုံး ကိုယ်စိတ်နှစ်ဖြာ ကျန်းမာချမ်းသာကြပါစေ။ </p>
+                      </div>
+                    </div>
+                </div>
+            </div><br>
+
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-border-bottom">
+                  <h3>How To</h3>
+                </div>
+                <div class="card-body">
+                  <div class="card-body responsive">
+                    <p> သင်ခန်းစာများ အားလုံးကို Course စာမျက်နှာမှာ ရှာဖွေကြည့်ရှုနိုင်ပါတယ်။ </p>
+                    <p> Category ကနေလည်း ကိုယ်သင်ကြားချင်သော သင်ခန်းစာများကို ရွေးချယ် သင်ကြားနိုင်ပါတယ်။ </p>
+                    <p> သင်ခန်းစာအသစ်များ တင်ထားပေးပါက တင်ထားသောဆရာများကိုယ်တိုင် Blog မှာ Article များတင်ပီး အသိပေးသွားမှာဖြစ်ပါတယ်။ </p>
+                    <p> နားမလည်သော သင်ခန်းစာများရှိပါက Comment မှာ မေးမြန်းလို့ရပါတယ်။ </p>
+                    <p> နောင်များမှာ သင်ခန်းစာများကို download ဆွဲနိုင်အောင် ပြုလုပ်ပေးသွားမှာ ဖြစ်ပါတယ်ခင်ဗျ။ </p>
+                    <p>  အားလုံးဘဲ အဆင်ပြေကြပါစေ။</p>
+                  </div>
+                </div>
+              </div>
+            </div><br>
+
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Contact Us</h3>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                        <div class="card-body responsive">
+                          <h5>Developer Profile</h5>
+                          <img style="width:250px" src="images/hhl.png" alt="">
+                        </div>
+                        <div class="card-body responsive">
+                          <h6><i class="fas fa-user"></i> Hein Htet Linn</h6>
+                          <h6><i class="fas fa-phone"></i> +959422418254</h6>
+                          <h6><i class="fab fa-facebook f"></i> hhl.94 </h6>
+                          <h6><i class="fas fa-envelope-square"></i> heinhtetlinn.it94@gmail.com</h6>
+                          <h6><i class="fas fa-address-card"></i> Pathein, Ayeyarwady, Myanmar</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body table-full-width table-responsive">
+                          <form class="" action="" method="post">
+                            <div class="form-group">
+                              <label for="exampleFormControlTextarea1">Your Name</label>
+                              <input type="text" class="form-control" id="exampleFormControlInput1" name="ctitle">
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleFormControlTextarea1">Your Email</label>
+                              <input type="text" class="form-control" id="exampleFormControlInput1" name="ctitle">
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleFormControlTextarea1">Your Message</label>
+                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="body">
+                              </textarea>
+                            </div>
+                            <button class="btn btn-lg btn-outline-secondary btn-block" type="submit">Send Message</button>
+                          </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><br>
+
+        </div>
+      </div>
+    </div>
+    <% include partials/footer.ejs %>
+  </body>
+  <% include partials/scripts.ejs %>
+</html>

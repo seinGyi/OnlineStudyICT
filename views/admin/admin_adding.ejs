@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <% include ../partials/admin/header.ejs %>
+  <body>
+    <div class="d-flex" id="wrapper">
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <% include ../partials/admin/nav.ejs %>
+        <% if (user) { %>
+          <div class="container-fluid">
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+                  <div class="card strpied-tabled-with-hover">
+                      <div class="card-header ">
+                          <h4 class="card-title">Category List</h4>
+                      </div>
+                      <div class="card-body table-full-width table-responsive">
+                          <table class="table table-hover table-striped">
+                              <thead>
+                                  <th>No</th>
+                                  <th>Name</th>
+                              </thead>
+                              <tbody>
+                                <% if (categories && categories.length > 0) { %>
+                                  <% var i=0; %>
+                                  <% categories.forEach(function(category) { %>
+                                    <% i++; %>
+                                    <tr>
+                                      <td><%= i %></td>
+                                      <td><%= category.cname %></td>
+                                    </tr>
+                                  <% }); %>
+                                <% } else { %>
+                                  <h1 style="text-align:center;"> Sorry ! No Category !</h1>
+                                <% } %>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="card strpied-tabled-with-hover">
+                      <div class="card-header ">
+                          <h4 class="card-title">Add Category</h4>
+                      </div>
+                      <div class="card-body table-full-width table-responsive">
+                          <form class="" action="/admin/addcategory" method="post">
+                            <div class="form-group">
+                              <label for="exampleFormControlTextarea1">Category Name</label>
+                              <input type="text" class="form-control" id="exampleFormControlInput1" name="ctitle">
+                            </div>
+                            <button class="btn btn-lg btn-outline-secondary btn-block" type="submit">Add</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        <% } else { %>
+          <div class="container-fluid">
+            <h2>Welcome to Admin Page</h2>
+            <h3>Please Login for Access !</h3>
+          </div>
+        <% } %>
+      </div>
+    </div>
+    <% include ../partials/admin/footer.ejs %>
+  </body>
+  <% include ../partials/admin/scripts.ejs %>
+</html>

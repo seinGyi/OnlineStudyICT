@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <% include partials/header.ejs %>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <% if(user){ %>
+      <% include partials/sidebar.ejs %>
+      <% } %>
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <% include partials/nav.ejs %><br>
+        <div class="container-fluid">
+          <div class="media">
+            <% if(article.authpic){ %>
+              <img src="<%= article.authpic %>" class="mr-3" style="width:35px; border-radius:50%; margin-top: 7.5px;" alt="xxx">
+            <% }else{ %>
+              <img src="../images/noimage.svg" class="mr-3" style="width:35px;" alt="xxx">
+            <% } %>
+            <div class="media-body">
+              <div class="card" style="max-width: 40em;">
+                <div class="card-header">
+                  <h6><strong><%= article.authname %></strong> -<small> posted in - 6, September, 2019</small></h6>
+                  <% if(user){ %>
+                    <% if(user.id == article.author){ %>
+                      <a class="btn btn-outline-secondary btn-sm" href="/articles/edit/<%=article._id%>">Edit</a>
+                      <a class="btn btn-outline-danger btn-sm delete-article" href="#" data-id=<%=article._id%>>Delete</a>
+                    <% } %>
+                  <% } %>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"><%= article.title %></h5>
+                  <p class="card-text"><%= article.body %></p>
+                  <hr>
+                  <p><%= likes.length %> Likes <%= comments.length %> Comments</p>
+                  <hr>
+                  <% if(article.comments){ %>
+                    <% comments.forEach(function(comment) { %>
+                      <p style="font-size:17px;"><strong><%=comment.username%> : </strong><%=comment.body%></p>
+                    <% }); %>
+                  <% } %>
+                  <% if(user){ %>
+                    <form action="/articles/<%=article._id%>/addlike" method="post">
+                      <input type="hidden" name="article_id" value="<%= article._id %>">
+                      <input type="hidden" name="username" value="<%= user.username %>">
+                      <input type="hidden" name="article_author" value="<%= article.author %>">
+                      <button type="submit" class="btn btn-outline-primary btn-sm" name="button">Like</button>
+                    </form>
+                    <form action="/articles/<%=article._id%>/addcomment" method="post"><br>
+                      <input type="hidden" name="article_id" value="<%= article._id %>">
+                      <input type="hidden" name="username" value="<%= user.username %>">
+                      <input type="hidden" name="article_author" value="<%= article.author %>">
+                      <!-- <div class="form-group"> -->
+                        <textarea class="form-control" name="comment" id="comment" rows="3" placeholder="comment"></textarea>
+                      <!-- </div> -->
+                      <button type="submit" class="btn btn-outline-primary btn-sm" name="button">Comment</button>
+                    </form>
+                  <% } %>
+                </div>
+                <!-- <div class="card-footer">
+                </div> -->
+              </div>
+            </div>
+          </div><br>
+        </div>
+
+      </div>
+    </div>
+    <% include partials/footer.ejs %>
+
+  </body>
+  <script type="text/javascript">
+    function likeBtn(d){
+      alert(d);
+    }
+  </script>
+  <% include partials/scripts.ejs %>
+</html>

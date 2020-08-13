@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>videos</title>
+  </head>
+  <body>
+    <h1>All Videos</h1>
+    <% if(files){ %>
+      <% files.forEach(function(file) { %>
+        <% if(file.isVideo) { %>
+          <video width="400" controls>
+            <source src="video/<%= file.filename %>" type="video/mp4">
+          </video>
+        <% }else{ %>
+          <%= file.filename %>
+        <% } %>
+        <form action="/video/<%= file._id %>?_method=DELETE" method="post">
+          <button type="submit" name="button">Delete</button><br>
+        </form>
+      <% }) %>
+    <% } else { %>
+      <p>No files to show</p>
+    <% } %>
+  </body>
+</html>

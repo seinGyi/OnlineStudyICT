@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <% include partials/header.ejs %>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <% if(user){ %>
+        <% if(user.type == "teacher"){ %>
+          <% include partials/sidebar.ejs %>
+        <% } else { %>
+          <% include partials/learners/sidebar.ejs %>
+        <% } %>
+      <% } %>
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <% include partials/nav.ejs %>
+        <div class="container-fluid">
+          <br>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Categories</h3>
+                    </div>
+                    <div class="card-body all-icons">
+                        <div class="row">
+                          <% if (categories && categories.length > 0) { %>
+                            <% categories.forEach(function(category) { %>
+                              <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                                  <!-- <div class="font-icon-detail"> -->
+                                    <a href="courses/categories/<%= category._id %>" style="text-decoration: none"><p><%= category.cname %></p></a>
+                                  <!-- </div> -->
+                              </div>
+                            <% }); %>
+                          <% } else { %>
+                            <h1 style="text-align:center;"> Sorry ! No Category !</h1>
+                          <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Favorite Courses</h3>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <% if (courses && courses.length > 0) { %>
+                      <% courses.forEach(function(course) { %>
+                        <div class="col-lg-6 col-xl-4">
+                          <div class="card text-white bg-secondary mb-3">
+                            <div class="card-header bg-secondary"><%= course.authname %></div>
+                            <div class="card-body">
+                              <a class="nostylelink" href="/courses/<%= course._id %>"><h5 class="card-title" style="color:white;"><%= course.title %></h5></a>
+                              <p class="card-text" style="color:white;"><%= course.description %></p>
+                            </div>
+                          </div>
+                        </div>
+                      <% }); %>
+                    <% } else { %>
+                      <h1 style="text-align:center;"> Sorry ! No Course !</h1>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            </div><br>
+
+            <div class="col-md-12">
+              <div class="d-flex justify-content-around">
+                <div class="col-lg-3 col-xl-2">
+                  <div class="card text-center">
+                    <img class="card-img-top" src="/images/teachers.png" alt="xxx">
+                    <div class="card-body">
+                      <h3><%= teachers.length %></h3>
+      								<p>Teachers</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-xl-2">
+                  <div class="card text-center">
+                    <img class="card-img-top" src="/images/courses.png" alt="xxx">
+                    <div class="card-body">
+                      <h3><%= courses.length %></h3>
+      								<p>Courses</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-xl-2">
+                  <div class="card text-center">
+                    <img class="card-img-top" src="/images/learners.png" alt="xxx">
+                    <i class="icon big rounded color1 fa-cloud"></i>
+                    <div class="card-body">
+                      <h3><%= learners.length %></h3>
+      								<p>Learners</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><br>
+
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-border-bottom">
+                  <h2>Favorite Teachers</h2>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <% if (teachers && teachers.length > 0) { %>
+                      <% teachers.forEach(function(teacher) { %>
+                        <div class="col-md-4 col-xl-3">
+                          <div class="card mb-3">
+                            <div class="card-body">
+                              <% if(teacher.photo){ %>
+                                <img class="card-img-top mb-4 rounded" src="<%= teacher.photo %>" style="border-radius: 50%;" alt="Teacher Photo">
+                              <% }else { %>
+                                <img class="card-img-top mb-4 rounded" src="images/noimage.svg" style="border-radius: 50%;" alt="No Photo">
+                              <% } %>
+                              <h5 class="card-title text-primary"><%= teacher.name %></h5>
+                              <p class="card-text pb-3"><%= teacher.username %></p>
+                              <p class="card-text pb-3"><%= teacher.email %></p>
+                              <a href="teachers/publicprofile/<%= teacher._id %>" class="btn btn-outline-primary">View Profile</a>
+                            </div>
+                          </div>
+                        </div>
+                      <% }); %>
+                    <% } else { %>
+                      <h1 style="text-align:center;"> Sorry ! No Teacher !</h1>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            </div><br>
+
+        </div>
+      </div>
+    </div>
+    <% include partials/footer.ejs %>
+  </body>
+  <% include partials/scripts.ejs %>
+</html>

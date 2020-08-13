@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <% include ../partials/header.ejs %>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <% if (user) { %>
+        <% include ../partials/sidebar.ejs %>
+      <% } %>
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <% include ../partials/nav.ejs %>
+        <div class="container-fluid"><br>
+          <div class="col-md-12">
+            <div class="card">
+              <!-- <div class="card-header card-header-border-bottom">
+                <h2><%= user.name %></h2>
+              </div> -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4 col-xl-4">
+                    <div class="card mb-3">
+                      <div class="card-header card-header-border-bottom">
+                        <h6>Profile</h6>
+                      </div>
+                      <div class="card-body">
+                        <% if(user.photo){ %>
+                          <img class="card-img-top mb-4 rounded" src="<%= user.photo %>" style="border-radius: 50%;" alt="Teacher Photo">
+                        <% }else { %>
+                          <img class="card-img-top mb-4 rounded" src="../../images/noimage.svg" style="border-radius: 50%;" alt="No Photo">
+                        <% } %>
+                        <h5 class="card-title text-primary"><%= user.name %></h5>
+                        <p class="card-text pb-3"><%= user.username %></p>
+                        <p class="card-text pb-3"><%= user.email %></p>
+                        <%= typeof msg != 'undefined' ? msg : '' %>
+                        <a class="btn btn-primary" href="/teachers/modify/<%= user._id %>">Modify</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-8 col-xl-8">
+                    <div class="card mb-3">
+                      <div class="card-header card-header-border-bottom">
+                        <h6>Courses</h6>
+                      </div>
+                      <div class="card-body">
+                        <div class="row">
+                          <% if (courses && courses.length > 0) { %>
+                            <% courses.forEach(function(course) { %>
+                              <div class="col-lg-12 col-xl-12">
+                                <div class="card text-white bg-secondary mb-3">
+                                  <div class="card-header bg-secondary"><%= course.authname %></div>
+                                  <div class="card-body">
+                                    <a class="nostylelink" href="../../courses/<%= course._id %>" style="text-decoration: none"><h5 class="card-title" style="color:white;"><%= course.title %></h5></a>
+                                    <p class="card-text" style="color:white;"><%= course.description %></p>
+                                  </div>
+                                </div>
+                              </div>
+                            <% }); %>
+                          <% } else { %>
+                            <h1 style="text-align:center;"> Sorry ! No Course !</h1>
+                          <% } %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div><br>
+        </div>
+      </div>
+    </div>
+    <% include ../partials/footer.ejs %>
+  </body>
+  <% include ../partials/scripts.ejs %>
+</html>

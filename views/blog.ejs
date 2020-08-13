@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <% include partials/header.ejs %>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <% if(user){ %>
+        <% include partials/sidebar.ejs %>
+      <% } %>
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <% include partials/nav.ejs %>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-3">
+              <span class="float-left">
+                <h3>Blog</h3>
+              </span>
+            </div>
+            <div class="col-9">
+              <span class="float-right">
+                <% if(user && type=='teacher'){ %>
+                  <a href="/articles/add" class="btn btn-outline-primary btn-sm" style="align: right;">Add Article</a>
+                <% } %>
+              </span>
+            </div>
+          </div>
+          <hr>
+            <ul>
+              <% if (articles && articles.length > 0) { %>
+                <% articles.forEach(function(article) { %>
+                  <div class="media">
+                    <% if(article.authpic){ %>
+                      <img src="<%= article.authpic %>" class="mr-3" style="width:35px; border-radius:50%; margin-top: 7.5px;" alt="xxx">
+                    <% }else{ %>
+                      <img src="../images/noimage.svg" class="mr-3" style="width:35px;" alt="xxx">
+                    <% } %>
+                    <div class="media-body">
+                      <div class="card" style="max-width: 40em;">
+                        <div class="card-header">
+                          <h6><%= article.authname %> -<small> posted in - <%= article.date %></small></h6>
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title"><%= article.title %></h5>
+                          <p class="card-text"><%= article.body %>      <a href="/articles/<%=article._id%>">Read More</a></p>
+                          <hr>
+                          <% if(article.likes || article.comments){ %>
+                            <% var likes = article.likes; var comments = article.comments %>
+                          <p><%= likes.length %> Likes <%= comments.length %> Comments</p>
+                          <% } %>
+                          <hr>
+                          <% if(user){ %>
+                            <a href="#" class="btn btn-outline-primary btn-sm">Like</a>
+                            <a href="/articles/<%=article._id%>" class="btn btn-outline-primary btn-sm">Comment</a>
+                          <% } %>
+                        </div>
+                        <!-- <div class="card-footer">
+                        </div> -->
+                      </div>
+                    </div>
+                  </div><br><br>
+                <% }); %>
+              <% } else { %>
+                <h1 style="text-align:center;"> Sorry ! No Articles !</h1>
+              <% } %>
+            </ul>
+
+        </div>
+      </div>
+    </div>
+    <% include partials/footer.ejs %>
+  </body>
+  <% include partials/scripts.ejs %>
+</html>

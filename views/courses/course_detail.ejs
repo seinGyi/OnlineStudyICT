@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <% include ../partials/learners/header.ejs %>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <% if(user){ %>
+        <% include ../partials/learners/sidebar.ejs %>
+      <% } %>
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <% include ../partials/nav.ejs %>
+        <div class="container-fluid">
+          <br>
+            <div class="col-md-12">
+
+              <!-- Rating Testng -->
+              <!-- <div align="center" style="background: gray;" class="" padding="50px;">
+                <i class="fa fa-star fa-2x" data-index="0"></i>
+                <i class="fa fa-star fa-2x" data-index="1"></i>
+                <i class="fa fa-star fa-2x" data-index="2"></i>
+                <i class="fa fa-star fa-2x" data-index="3"></i>
+                <i class="fa fa-star fa-2x" data-index="4"></i>
+              </div> -->
+
+              <div class="card col-12">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-3">
+                      <span class="float-left">
+                        <h3>Course</h3>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <% if(user){ %>
+                        <div class="col-lg-9 col-xl-4">
+                          <div class="card text-white bg-secondary mb-3">
+                            <div class="card-header bg-secondary">
+                              <h5 class="card-title" style="color:white;"><%= course.title %></h5>
+                              <i class="fa fa-star" data-index="0"></i>
+                              <i class="fa fa-star" data-index="1"></i>
+                              <i class="fa fa-star" data-index="2"></i>
+                              <i class="fa fa-star" data-index="3"></i>
+                              <i class="fa fa-star" data-index="4"></i>
+                              <h6 style="color: yellow" id="str"></h6>
+                            </div>
+                            <div class="card-body">
+                              <a class="nostylelink" href="#"><h6 class="card-title" style="color:white;"><%= course.authname %></h6></a>
+                              <p class="card-text" style="color:white;"><%= course.description %></p>
+                            </div>
+                          </div>
+                        </div>
+                      <% if(user.id == course.author){ %>
+                        <div class="col-lg-3 col-xl-3" style="align: right;">
+                          <a class="btn btn-outline-secondary btn-sm" href="/courses/<%= course._id %>/addlesson">Add Lessons</a><br><br>
+                          <a class="btn btn-outline-secondary btn-sm" href="/articles/edit/<%= %>">View Members</a>
+                        </div>
+                      <% } %>
+                    <% } else { %>
+                      <div class="col-lg-8 col-xl-4">
+                        <div class="card text-white bg-secondary mb-3">
+                          <div class="card-header bg-secondary">
+                            <h5 class="card-title" style="color:white;"><%= course.title %></h5>
+                            <!-- Rating Testng -->
+                            <i class="fa fa-star disabled" data-index="0"></i>
+                            <i class="fa fa-star disabled" data-index="1"></i>
+                            <i class="fa fa-star disabled" data-index="2"></i>
+                            <i class="fa fa-star disabled" data-index="3"></i>
+                            <i class="fa fa-star disabled" data-index="4"></i>
+                            <h6 style="color: yellow" id="str"></h6>
+                          </div>
+                          <div class="card-body">
+                            <h6 style="color:white;"><%= course.authname %></h6>
+                            <p class="card-text" style="color:white;"><%= course.description %></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-xl-3">
+                        <div class="card text-white bg-secondary mb-3">
+                          <div class="card-header bg-secondary">For all Lessons</div>
+                          <div class="card-body">
+                            <form class="" action="index.html" method="post">
+                              <input type="text" class="form-control" class="exampleFormControlInput1" name="title" placeholder="Username">
+                              <input type="password" class="form-control" class="exampleFormControlInput1" name="title" placeholder="Passsword">
+                              <button type="submit" class="btn btn-outline-light btn-sm">Enroll</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    <% } %>
+                  </div>
+                </div>
+              </div><br>
+              <div class="card col-12"><br>
+                <div class="card col-11"><br>
+                  <% if(files){ %>
+                    <% files.forEach(function(file) { %>
+                      <% if(file.isVideo) { %>
+                        <video width="400" controls>
+                          <source src="../video/<%= file.filename %>" type="video/mp4">
+                        </video>
+                        <%= file.filename %><br>
+                        <% if(user){ %>
+                          <% if(user.id == course.author){ %>
+                            <form action="/files/<%= file._id %>?_method=DELETE" method="post">
+                              <input type="hidden" name="courseid" value="<%= file.aliases %>">
+                              <button type="submit" name="button" class="btn btn-outline-danger btn-sm">Delete</button><br>
+                            </form>
+                          <% } %>
+                        <% } %>
+                        <br>
+                      <% }else{ %>
+                        <%= file.filename %><br>
+                      <% } %>
+                    <% }); %>
+                  <% }else{ %>
+                    <div class="card-header"><h5>Sorry ! No Lessons</h5></div>
+                  <% } %>
+                </div><br>
+              </div>
+            </div><br>
+        </div>
+      </div>
+    </div>
+    <% include ../partials/learners/footer.ejs %>
+  </body>
+  <% include ../partials/learners/scripts.ejs %>
+</html>

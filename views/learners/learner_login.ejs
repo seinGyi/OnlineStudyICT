@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <% include ../partials/learners/header.ejs %>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <% if(user){ %>
+        <% include ../partials/learners/sidebar.ejs %>
+      <% } %>
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <% include ../partials/learners/nav.ejs %>
+        <div class="container-fluid">
+          <br><br><br>
+          <div class="col-md-4 m-auto">
+            <div class="card card-body">
+              <h1 class="text-center md-4">
+                Welcome
+              </h1>
+              <form action="/learners/login" method="post">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Username</label>
+                  <input type="name" class="form-control" id="exampleFormControlInput1" name="username">
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Password</label>
+                  <input type="password" class="form-control" id="exampleFormControlInput1" name="password">
+                </div>
+                <div class="form-group">
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+                <div class="form-group">
+                  <a href="/learners/register">I'm not register!</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% include ../partials/learners/footer.ejs %>
+  </body>
+  <% include ../partials/learners/scripts.ejs %>
+</html>

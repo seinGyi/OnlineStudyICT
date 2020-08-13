@@ -1,0 +1,137 @@
+/* *{
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif;
+} */
+
+/* nav{
+  width: auto;
+  margin-left: -5.6%;
+  margin-right: -5.6%;
+}
+
+body #sidebar{
+  margin-left: -5.6%;
+  padding: 0px;
+  font-family: sans-serif;
+}
+footer{
+  margin-bottom: 0px;
+}
+*/
+body{
+  background-color: #ebccff;
+}
+
+.alert-error{
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.alert-success_msg{
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.navbar,.btn.btn-primary{
+  background-color: #7a00cc;
+}
+.btn.btn-outline-primary{
+  margin-top: 5%;
+  color: #7a00cc;
+  border-color: #7a00cc;
+}
+.btn.btn-outline-primary:hover{
+  background-color: #7a00cc;
+  color: white;
+}
+
+h1,p,h2,h3,h5,h6,label,a{
+  color: #7a00cc;
+}
+ul{
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.disabled{
+  pointer-events: none;
+  cursor: default;
+}
+
+/* replace */
+
+/* body {
+  overflow-x: hidden;
+} */
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+  background: #9933ff;
+  border-color: #7a00cc;
+  border-right: solid 1px;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+  color: white;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+  background-color: #7a00cc;
+}
+
+#sidebar-wrapper .list-group-item {
+  background: #c299ff;
+  color: white;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+.img{
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  display: block;
+}
+
+.container-fluid{
+  min-height: 89.3vh;
+}
+
+footer{
+background: #7a00cc;
+}
+footer span{
+  margin-left: 40%;
+}

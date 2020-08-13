@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <% include ../partials/header.ejs %>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <% if (user) { %>
+        <% include ../partials/sidebar.ejs %>
+      <% } %>
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <% include ../partials/nav.ejs %>
+        <div class="container-fluid"><br>
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-3 col-xl-3">
+                    <div class="card mb-3">
+                      <div class="card-header card-header-border-bottom">
+                        <h6>Profile</h6>
+                      </div>
+                      <div class="card-body">
+                        <% if(teacher.photo){ %>
+                          <img class="card-img-top mb-4 rounded" src="<%= teacher.photo %>" style="border-radius: 50%;" alt="Teacher Photo">
+                        <% }else { %>
+                          <img class="card-img-top mb-4 rounded" src="../../images/noimage.svg" style="border-radius: 50%;" alt="No Photo">
+                        <% } %>
+                        <h5 class="card-title text-primary"><%= teacher.name %></h5>
+                        <p class="card-text pb-3"><%= teacher.username %></p>
+                        <p class="card-text pb-3"><%= teacher.email %></p>
+                        <%= typeof msg != 'undefined' ? msg : '' %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-9 col-xl-9">
+                    <div class="card mb-3">
+                      <div class="card-header card-header-border-bottom">
+                        <h6>Courses</h6>
+                      </div>
+                      <div class="card-body">
+                        <div class="row">
+                          <% if (courses && courses.length > 0) { %>
+                            <% courses.forEach(function(course) { %>
+                              <div class="col-lg-12 col-xl-12">
+                                <div class="card text-white bg-secondary mb-3">
+                                  <div class="card-header bg-secondary"><%= course.authname %></div>
+                                  <div class="card-body">
+                                    <a class="nostylelink" href="../../courses/<%= course._id %>" style="text-decoration: none"><h5 class="card-title" style="color:white;"><%= course.title %></h5></a>
+                                    <p class="card-text" style="color:white;"><%= course.description %></p>
+                                  </div>
+                                </div>
+                              </div>
+                            <% }); %>
+                          <% } else { %>
+                            <h1 style="text-align:center;"> Sorry ! No Course !</h1>
+                          <% } %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><br>
+        </div>
+      </div>
+    </div>
+    <% include ../partials/footer.ejs %>
+  </body>
+  <% include ../partials/scripts.ejs %>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <% include ../partials/admin/header.ejs %>
+  <body>
+    <div class="d-flex" id="wrapper">
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <% include ../partials/admin/nav.ejs %>
+        <% if (user) { %>
+          <div class="container-fluid">
+            <br>
+              <div class="col-md-12">
+                  <div class="card strpied-tabled-with-hover">
+                      <div class="card-header ">
+                          <h4 class="card-title">Teachers List</h4>
+                          <p class="card-category">There are awesome <%= teachers.length %> teachers.</p>
+                      </div>
+                      <div class="card-body table-full-width table-responsive">
+                          <table class="table table-hover table-striped">
+                              <thead>
+                                  <th>Profile</th>
+                                  <th>Name</th>
+                                  <th>Username</th>
+                                  <th>Email</th>
+                                  <!-- <th>Address</th> -->
+                              </thead>
+                              <tbody>
+                              <% if (teachers && teachers.length > 0) { %>
+                                <% teachers.forEach(function(teacher) { %>
+                                  <tr>
+                                    <td>
+                                      <% if (teacher.photo) { %>
+                                        <img src="<%= teacher.photo %>" style="width:40px; height:40px; border-radius: 50%;" alt="Teacher Photo">
+                                      <% } else { %>
+                                        <img src="../images/noimage.svg" style="width:40px; height:40px; border-radius: 50%;" alt="no image">
+                                      <% } %>
+                                    </td>
+                                    <td><%= teacher.name %></td>
+                                    <td><%= teacher.username %></td>
+                                    <td><%= teacher.email %></td>
+                                    <td><a class="btn btn-outline-danger btn-sm delete-teacher" href="#" data-id=<%=teacher._id%>>Delete</a></td>
+                                  </tr>
+                                <% }); %>
+                              <% } else { %>
+                                <h1 style="text-align:center;"> Sorry ! No Teacher !</h1>
+                              <% } %>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div><br>
+              <div class="col-md-12">
+                <div class="card strpied-tabled-with-hover">
+                    <div class="card-header ">
+                        <h4 class="card-title">Learners List</h4>
+                        <p class="card-category">There are active <%= learners.length %> learners.</p>
+                    </div>
+                    <div class="card-body table-full-width table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <th>Profile</th>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <!-- <th>Address</th> -->
+                            </thead>
+                            <tbody>
+                            <% if (learners && learners.length > 0) { %>
+                              <% learners.forEach(function(learner) { %>
+                                <tr>
+                                  <td>
+                                    <% if (learner.photo) { %>
+                                      <img src="<%= learner.photo %>" style="width:40px; height:40px; border-radius: 50%;" alt="Learner Photo">
+                                    <% } else { %>
+                                      <img src="../images/noimage.svg" style="width:40px; height:40px; border-radius: 50%;" alt="no image">
+                                    <% } %>
+                                  </td>
+                                  <td><%= learner.name %></td>
+                                  <td><%= learner.username %></td>
+                                  <td><%= learner.email %></td>
+                                  <td><a class="btn btn-outline-danger btn-sm delete-learner" href="#" data-id=<%=learner._id%>>Delete</a></td>
+
+                                </tr>
+                              <% }); %>
+                            <% } else { %>
+                              <h1 style="text-align:center;"> Sorry ! No Learner !</h1>
+                            <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+              </div>
+
+
+            <br>
+            <h3><%= articles.length %> Articles</h3>
+            <ul>
+              <% if (articles && articles.length > 0) { %>
+                <% articles.forEach(function(article) { %>
+                    <li class="list-group-item">
+                      <a> <%= article.title %></a>
+                      <!-- <a class="btn btn-outline-danger delete-article btn-sm float-right" href="#" role="button" data-id=<%=article._id%>>Delete</a> -->
+                    </li>
+                <% }); %>
+              <% } else { %>
+                <h1 style="text-align:center;"> Sorry ! No Article !</h1>
+              <% } %>
+            </ul>
+          </div>
+        <% } else { %>
+          <div class="container-fluid">
+            <h2>Welcome to Admin Page</h2>
+            <h3>Please Login for Access !</h3>
+          </div>
+        <% } %>
+      </div>
+    </div>
+    <% include ../partials/admin/footer.ejs %>
+  </body>
+  <% include ../partials/admin/scripts.ejs %>
+</html>
